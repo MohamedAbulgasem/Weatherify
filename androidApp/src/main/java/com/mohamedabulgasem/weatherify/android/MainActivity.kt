@@ -16,7 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.mohamedabulgasem.weatherify.Greeting
+import com.mohamedabulgasem.weatherify.Weatherify
 
 @Composable
 fun MyApplicationTheme(
@@ -58,6 +58,14 @@ fun MyApplicationTheme(
 }
 
 class MainActivity : ComponentActivity() {
+
+    private val weatherify: Weatherify by lazy {
+        Weatherify.create(
+            apiKey = BuildConfig.API_KEY,
+            withCachingEnabled = true
+        )
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -66,7 +74,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting(Greeting().greeting())
+                    Text(text = weatherify.getWeatherForecast())
                 }
             }
         }

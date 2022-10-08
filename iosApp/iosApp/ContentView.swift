@@ -2,10 +2,14 @@ import SwiftUI
 import shared
 
 struct ContentView: View {
-	let greet = Greeting().greeting()
+
+    let weatherify = WeatherifyCompanion().create(
+			apiKey: "fzc7nsad7pz48",
+			withCachingEnabled: true
+	)
 
 	var body: some View {
-		Text(greet)
+		Text(weatherify.getWeatherForecast())
 	}
 }
 

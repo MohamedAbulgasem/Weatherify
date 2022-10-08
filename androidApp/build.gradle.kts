@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -5,13 +7,17 @@ plugins {
 
 android {
     namespace = "com.mohamedabulgasem.weatherify.android"
-    compileSdk = 32
+    compileSdk = 33
     defaultConfig {
         applicationId = "com.mohamedabulgasem.weatherify.android"
         minSdk = 21
-        targetSdk = 32
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
+
+        // Set BuildConfig.API_KEY from local.properties
+        val apiKey: String = gradleLocalProperties(rootDir).getProperty("api.key") ?: "\"\""
+        buildConfigField("String", "API_KEY", apiKey)
     }
     buildFeatures {
         compose = true
@@ -38,5 +44,5 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview:1.2.1")
     implementation("androidx.compose.foundation:foundation:1.2.1")
     implementation("androidx.compose.material:material:1.2.1")
-    implementation("androidx.activity:activity-compose:1.5.1")
+    implementation("androidx.activity:activity-compose:1.6.0")
 }
