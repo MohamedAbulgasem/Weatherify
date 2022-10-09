@@ -29,7 +29,7 @@ internal class ApiClient(private val apiKey: String) {
     ): T {
         val httpsResponse = httpClient.get {
             url {
-                protocol = URLProtocol.HTTP
+                protocol = URLProtocol.HTTPS
                 host = API_HOST
                 path(path)
                 // Query params
@@ -44,7 +44,7 @@ internal class ApiClient(private val apiKey: String) {
     }
 
     companion object {
-        private const val API_HOST = "api.weatherapi.com/v1"
+        private const val API_HOST = "api.weatherapi.com"
         private const val PARAM_API_KEY = "key"
     }
 }

@@ -1,10 +1,15 @@
 package com.mohamedabulgasem.weatherify
 
 import com.mohamedabulgasem.weatherify.internal.WeatherifyImpl
+import com.mohamedabulgasem.weatherify.model.WeatherForecast
 
 interface Weatherify {
 
-    fun getWeatherForecast(): String
+    suspend fun getWeatherForecast(
+        city: String,
+        days: Int,
+        withAirQuality: Boolean = false
+    ): WeatherForecast
 
     companion object {
 

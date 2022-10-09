@@ -15,8 +15,8 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        // Set BuildConfig.API_KEY from local.properties
-        val apiKey: String = gradleLocalProperties(rootDir).getProperty("api.key") ?: "\"\""
+        // Set https://www.weatherapi.com API key from local.properties
+        val apiKey = gradleLocalProperties(rootDir).getProperty("api.key") ?: "\"\""
         buildConfigField("String", "API_KEY", apiKey)
     }
     buildFeatures {
